@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Login & Sign-In Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background-image"></div>
+    <div class="container" id="container">
+        <div class="header" id="header">Login</div>
+        <div class="form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+            <div class="form-group">
+                <button id="submit-btn">Login</button>
+            </div>
+            <div class="toggle-btn">
+                <a href="#" id="toggle-link">Don't have an account? Sign Up</a>
+            </div>
+        </div>
+        <div class="illustration"></div>
+    </div>
+
+    <script>
+        const container = document.getElementById('container');
+        const header = document.getElementById('header');
+        const toggleLink = document.getElementById('toggle-link');
+        const submitBtn = document.getElementById('submit-btn');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+
+        toggleLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (header.textContent === 'Login') {
+                header.textContent = 'Sign Up';
+                container.classList.add('move-out');
+                setTimeout(() => {
+                    container.classList.remove('move-out');
+                    container.classList.add('move-in');
+                }, 500);
+                toggleLink.textContent = 'Already have an account? Login';
+            } else {
+                header.textContent = 'Login';
+                container.classList.add('move-out');
+                setTimeout(() => {
+                    container.classList.remove('move-out');
+                    container.classList.add('move-in');
+                }, 500);
+                toggleLink.textContent = 'Don\'t have an account? Sign Up';
+            }
+        });
+
+        submitBtn.addEventListener('click', () => {
+            // For demo purposes: Trigger shake animation if username or password is empty
+            if (!usernameInput.value || !passwordInput.value) {
+                usernameInput.classList.add('shake');
+                passwordInput.classList.add('shake');
+                setTimeout(() => {
+                    usernameInput.classList.remove('shake');
+                    passwordInput.classList.remove('shake');
+                }, 1000);
+            }
+        });
+
+        window.onload = () => {
+            container.classList.add('bounce-in');
+            container.classList.add('show');
+        };
+    </script>
+</body>
+</html>
